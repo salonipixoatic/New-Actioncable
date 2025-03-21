@@ -1,0 +1,27 @@
+<div class="welcome-container">
+  <h1>Welcome to Our Chat App</h1>
+  <p>Connect and chat with friends instantly.</p>
+
+  <div class="auth-buttons">
+    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary" %>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
+    <%= link_to "Forgot Password?", new_user_password_path, class: "btn btn-link" %>
+  </div>
+</div>
+
+<style>
+  .welcome-container {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .auth-buttons {
+    margin-top: 20px;
+  }
+
+  .btn {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+</style>

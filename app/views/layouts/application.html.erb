@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ChatApp</title>
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= javascript_include_tag "application", defer: true %> 
+</head>
+
+  <body>
+    <%= yield %> 
+  <% if user_signed_in? %>
+  <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "logout-button" %>
+<% end %>
+
+  </body>
+</html>

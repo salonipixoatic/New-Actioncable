@@ -1,0 +1,10 @@
+<div id="messages" data-chat-id="<%= @chat.id %>">
+  <% @messages.each do |message| %>
+    <div><strong><%= message.user.email %>:</strong> <%= message.content %></div>
+  <% end %>
+</div>
+
+<%= form_with(model: [@chat, Message.new], remote: true) do |f| %>
+  <%= f.text_field :content, placeholder: "Type a message..." %>
+  <%= f.submit "Send" %>
+<% end %>

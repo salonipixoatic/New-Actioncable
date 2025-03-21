@@ -1,0 +1,13 @@
+<h2>All Users</h2>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.email %>
+      <%= button_to "Chat", chats_path(user_id: user.id), method: :post , class: "chat-button" %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Group", new_chat_path, class: "btn btn-primary" %>
+<div class="container">

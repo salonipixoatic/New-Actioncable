@@ -1,0 +1,51 @@
+<h2>Create New Group Chat</h2>
+
+<%= form_with(model: @chat, url: chats_path, method: :post) do |f| %>
+  <div>
+    <h3>Select Users</h3>
+    <% @users.each do |user| %>
+      <label>
+        <%= check_box_tag "chat[user_ids][]", user.id, false, class: "user-checkbox", data: { email: user.email } %>
+        <%= user.email %>
+      </label>
+    <% end %>
+  </div>
+
+  <div>
+    <h3>Selected Users:</h3>
+    <ul id="selected-users">
+    </ul>
+  </div>
+
+  <div>
+    <%= f.label :name, "Group Name" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.submit "Create Group" %>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".user-checkbox");
+    const selectedUsersList = document.getElementById("selected-users");
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+        if (this.checked) {
+          // Add user to list
+          let listItem = document.createElement("li");
+          listItem.textContent = this.dataset.email;
+          listItem.setAttribute("data-user-id", this.value);
+          selectedUsersList.appendChild(listItem);
+        } else {
+          // Remove user from list
+          let listItem = selectedUsersList.querySelector(`li[data-user-id='${this.value}']`);
+          if (listItem) {
+            selectedUsersList.removeChild(listItem);
+          }
+        }
+      });
+    });
+  });
+</script>

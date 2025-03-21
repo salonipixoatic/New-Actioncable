@@ -1,0 +1,10 @@
+<h1>Your Chats</h1>
+<%= link_to "Create New Chat", new_chat_path, class: "btn btn-primary" %>
+
+<ul>
+  <% @chats.each do |chat| %>
+    <li>
+      <%= link_to chat.name, chat_path(chat) %>
+    </li>
+  <% end %>
+</ul>
